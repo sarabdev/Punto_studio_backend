@@ -19,8 +19,8 @@ export class OpenAIService {
     try {
       const response = await this.openai.chat.completions.create({
         messages: [{ role: "user", content: prompt }],
-        // model: "gpt-4-1106-preview",
-        model: "gpt-3.5-turbo",
+        model: "gpt-4-1106-preview",
+        // model: "gpt-3.5-turbo",
       });
 
       const { choices } = response;
@@ -40,9 +40,9 @@ export class OpenAIService {
         messages: [
           { role: "user", content: generateStructuredAnalysis(prompt) },
         ],
-        model: "gpt-3.5-turbo",
+        // model: "gpt-3.5-turbo",
         // model: "gpt-4-1106-preview",
-        // model: "gpt-3.5-turbo-1106",
+        model: "gpt-3.5-turbo-1106",
       });
 
       const { choices } = response;
@@ -70,7 +70,7 @@ export class OpenAIService {
   }
 
   async splitTextIntoLessons(text: string): Promise<string[]> {
-    const maxChunkSize = 3048;
+    const maxChunkSize = 2040;
     const words = text.split(/\s+/);
     const numberOfChunks = Math.ceil(words.length / maxChunkSize);
     const newMaxChunkSize = Math.ceil(words.length / numberOfChunks);

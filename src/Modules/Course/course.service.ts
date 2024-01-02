@@ -30,8 +30,6 @@ export class CourseService {
 
     const textParts = await this.openAIService.splitTextIntoLessons(text);
 
-    console.log(textParts.length);
-
     // Prepare an array of promises for processing all the lessons.
     const lessonPromises = textParts.map(async (part) => {
       try {
