@@ -12,7 +12,7 @@ export class Lesson {
   @Column("text")
   content: string;
 
-  @Column({ type: "int" })
+  @Column({ type: "int", default: 0 })
   content_rating: number;
 
   @ManyToOne(() => Course, (course) => course.lessons)
