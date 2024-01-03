@@ -46,7 +46,7 @@ export class AuthServices {
     const user = await this.userRepository.findOneBy({ email });
 
     if (!user) {
-      throw new Error("User not found");
+      throw new Error("Utente non trovato.");
     }
 
     user.password = newPassword;

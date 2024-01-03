@@ -23,7 +23,7 @@ export class OpenAIService {
             // Always starting with a system message ensures that you are starting a new session.
             role: "system",
             content:
-              "You are Chatgpt, a privatised large language model powered by OpenAI.",
+              "You are Chatgpt, a privatised large language model powered by OpenAI.  Please check if user content is in Italian then you should reply in italian. if user content is in english you should reply in english. Always remember that!",
           },
 
           { role: "user", content: prompt },
@@ -52,7 +52,7 @@ export class OpenAIService {
             // Always starting with a system message ensures that you are starting a new session.
             role: "system",
             content:
-              "You are Chatgpt, a privatised large language model powered by OpenAI.",
+              "You are Chatgpt, a privatised large language model powered by OpenAI. Please check if user content is in Italian then you should reply in italian. if user content is in english you should reply in english. Always remember that!",
           },
 
           { role: "user", content: generateStructuredAnalysis(prompt) },
@@ -66,7 +66,7 @@ export class OpenAIService {
       if (choices && choices.length > 0 && choices[0].message) {
         return choices[0].message.content.trim();
       } else {
-        throw new Error("No valid choices found in the response.");
+        throw new Error("Nessuna scelta valida trovata nella risposta.");
       }
     } catch (error) {
       console.error("Error calling OpenAI API:", error);

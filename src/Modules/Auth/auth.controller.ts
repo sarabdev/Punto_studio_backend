@@ -30,13 +30,13 @@ export class AuthController {
       registerData.email
     );
     if (existingUser) {
-      throw new HttpException("User already exists", HttpStatus.BAD_REQUEST);
+      throw new HttpException("L'utente esiste già.", HttpStatus.BAD_REQUEST);
     }
     registerData.password = await bcrypt.hash(registerData.password, 12);
     const newUser = await this.authservice.create(registerData);
     delete newUser.password;
     return {
-      message: "Registration successful",
+      message: "Registrazione avvenuta con successo.",
       user: newUser,
     };
   }
@@ -49,7 +49,7 @@ export class AuthController {
     const user = await this.authservice.findOneWithEmail(loginData.email);
 
     if (!user || !(await bcrypt.compare(loginData.password, user.password))) {
-      throw new BadRequestException("Invalid credentials");
+      throw new BadRequestException("Credenziali non valide.");
     }
 
     const jwt = await this.jwtservice.signAsync({ id: user.id });
@@ -57,7 +57,7 @@ export class AuthController {
     response.cookie("jwt", jwt, { httpOnly: true });
 
     return {
-      message: "Login successful",
+      message: "Accesso riuscito con successo.",
       jwt,
     };
   }

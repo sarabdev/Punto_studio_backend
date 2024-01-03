@@ -62,7 +62,7 @@ export class CourseService {
     });
 
     if (!courseWithLessons) {
-      throw new Error(`Course with id ${courseId} not found`);
+      throw new Error(`Corso con ID ${courseId} non trovato.`);
     }
 
     return courseWithLessons;
@@ -75,7 +75,7 @@ export class CourseService {
     });
 
     if (!course) {
-      throw new Error(`Course with id ${courseId} not found`);
+      throw new Error(`Corso con ID ${courseId}  non trovato.`);
     }
     await this.lessonService.remove(course.lessons);
     await this.courseRepository.remove(course);
