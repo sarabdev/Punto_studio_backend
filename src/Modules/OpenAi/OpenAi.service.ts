@@ -23,7 +23,7 @@ export class OpenAIService {
             // Always starting with a system message ensures that you are starting a new session.
             role: "system",
             content:
-              "Sei ChatGPT, un grande modello di linguaggio privatizzato sviluppato da OpenAI.  ",
+              "Sei ChatGPT, un grande modello di linguaggio privatizzato sviluppato da OpenAI.   ",
           },
 
           { role: "user", content: prompt },
@@ -76,13 +76,13 @@ export class OpenAIService {
 
   async extractCourseNameFromText(text: string): Promise<string> {
     const splitedtext = await this.splitTextByTokenLimit(text);
-    const prompt = `Ecco un testo dettagliato: "${splitedtext[0]}". Qual sarebbe un nome di corso adatto basato su questo contenuto? Fornisci solo il nome del corso, senza altre informazioni. Nota: controlla la lingua del documento fornito e rispondi nella stessa lingua del documento. Solo il nome e non fornire alcun nome di corso: 'qui sarà il nome'.`;
+    const prompt = `Ecco un testo dettagliato: "${splitedtext[0]}". Qual sarebbe un nome di corso adatto basato su questo contenuto? Fornisci solo il nome del corso, senza altre informazioni. Nota: controlla la lingua del documento fornito e rispondi nella stessa lingua del documento. Solo il nome e non fornire alcun nome di corso: 'qui sarà il nome'. Il nome dovrebbe essere breve, massimo una riga.`;
     return await this.generateText(prompt);
   }
 
   async extractLessonNameFromText(text: string): Promise<string> {
     const splitedtext = await this.splitTextByTokenLimit(text);
-    const prompt = `Ecco un testo dettagliato: "${splitedtext[0]}". Qual sarebbe un nome di lezione adatto basato su questo contenuto? Fornisci solo il nome della lezione, senza altre informazioni. Nota: controlla la lingua del documento fornito e rispondi nella stessa lingua del documento. Solo il nome e non fornire alcun nome di corso: 'qui sarà il nome'.`;
+    const prompt = `Ecco un testo dettagliato: "${splitedtext[0]}". Qual sarebbe un nome di lezione adatto basato su questo contenuto? Fornisci solo il nome della lezione, senza altre informazioni. Nota: controlla la lingua del documento fornito e rispondi nella stessa lingua del documento. Solo il nome e non fornire alcun nome di corso: 'qui sarà il nome'. Il nome dovrebbe essere breve, massimo una riga.`;
     return await this.generateText(prompt);
   }
 
