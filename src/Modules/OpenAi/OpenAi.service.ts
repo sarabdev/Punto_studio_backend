@@ -23,14 +23,14 @@ export class OpenAIService {
             // Always starting with a system message ensures that you are starting a new session.
             role: "system",
             content:
-              "You are Chatgpt, a privatised large language model powered by OpenAI.  Please check if user content is in Italian then you should reply in italian. if user content is in english you should reply in english. Always remember that!",
+              "Sei ChatGPT, un grande modello di linguaggio privatizzato sviluppato da OpenAI.  ",
           },
 
           { role: "user", content: prompt },
         ],
         // model: "gpt-4-1106-preview",
-        model: "gpt-3.5-turbo",
-        // model: "gpt-3.5-turbo-1106",
+      //  model: "gpt-3.5-turbo",
+         model: "gpt-3.5-turbo-1106",
       });
 
       const { choices } = response;
@@ -52,7 +52,7 @@ export class OpenAIService {
             // Always starting with a system message ensures that you are starting a new session.
             role: "system",
             content:
-              "You are Chatgpt, a privatised large language model powered by OpenAI. Please check if user content is in Italian then you should reply in italian. if user content is in english you should reply in english. Always remember that!",
+              "Sei ChatGPT, un grande modello di linguaggio privatizzato sviluppato da OpenAI. ",
           },
 
           { role: "user", content: generateStructuredAnalysis(prompt) },
@@ -76,13 +76,13 @@ export class OpenAIService {
 
   async extractCourseNameFromText(text: string): Promise<string> {
     const splitedtext = await this.splitTextByTokenLimit(text);
-    const prompt = `Here is a detailed text: "${splitedtext[0]}". What would be a suitable course name based on this content?. Provide just course name not any ather information.Note:Please check the language of the provide document and and also reply in language in which the document is!.Just name and also not provide course name:"" just a "here will be the name"`;
+    const prompt = `Ecco un testo dettagliato: "${splitedtext[0]}". Qual sarebbe un nome di corso adatto basato su questo contenuto? Fornisci solo il nome del corso, senza altre informazioni. Nota: controlla la lingua del documento fornito e rispondi nella stessa lingua del documento. Solo il nome e non fornire alcun nome di corso: 'qui sarà il nome'.`;
     return await this.generateText(prompt);
   }
 
   async extractLessonNameFromText(text: string): Promise<string> {
     const splitedtext = await this.splitTextByTokenLimit(text);
-    const prompt = `Here is a detailed text: "${splitedtext[0]}". What would be a suitable lesson name based on this content?. Provide just lesson name not any ather information.Note:Please check the language of the provide document and and also reply in language in which the document is!. Just name and also not provide course name:"" just a "here will be the name"`;
+    const prompt = `Ecco un testo dettagliato: "${splitedtext[0]}". Qual sarebbe un nome di lezione adatto basato su questo contenuto? Fornisci solo il nome della lezione, senza altre informazioni. Nota: controlla la lingua del documento fornito e rispondi nella stessa lingua del documento. Solo il nome e non fornire alcun nome di corso: 'qui sarà il nome'.`;
     return await this.generateText(prompt);
   }
 
@@ -142,7 +142,7 @@ export class OpenAIService {
 
     try {
       const response = await this.openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-1106",
         messages: conversation,
       });
 
